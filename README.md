@@ -44,6 +44,9 @@ ensure r3_pawnshop
 ```
 - Import the sql file into your database
 
+## Credits
+This resource was made from [glitchdetectors example handler](https://github.com/glitchdetector/fivem-prospecting-example).
+
 ## Discord:
 If you want to contact me or require help you could join my discord server, I can't guarantee that I will be able to help you.
 * [Discord Server](https://discord.gg/bEWmBbg)
