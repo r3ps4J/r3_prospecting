@@ -54,7 +54,7 @@ If you want to contact me or require help you could join my discord server, I ca
 ## Legal
 
 I'll paste something regarding a license down here.
-Any changes to this script should link back to me. You can always make a pull request if you have good extra stuff like new types of notifications.
+Any changes to this script should link back to me. You can always make a pull request if you have good extra stuff.
 
 ### License
 r3_prospecting - Prospecting handler for ESX.
