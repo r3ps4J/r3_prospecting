@@ -7,7 +7,7 @@ game "gta5"
 
 description "Prospecting plugin for ESX"
 
-dependencies {"prospecting", "r3_notifications"}
+dependencies {"prospecting"}
 server_script "@prospecting/interface.lua"
 
 client_script "scripts/cl_*.lua"

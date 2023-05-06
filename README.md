@@ -1,5 +1,7 @@
 # r3_prospecting
-#### A handler for glitchdetectors prospecting minigame made to work with ESX
+#### A handler for glitchdetectors prospecting minigame made to work with QBCore
+
+This is a QBCore adaptation using minor parts of the [prospecting with treasure map script](https://forum.cfx.re/t/esx-qbcore-prospecting-with-treasure-map/3596757).
 
 ## Features
 * Randomly generated treasure within a pre-defined area
@@ -20,18 +22,9 @@ You have to find a way to give players the detector item, it is the easiest to j
 
 ## Dependencies
 * [Prospecting](https://github.com/glitchdetector/fivem-prospecting)
-* [ESX](https://github.com/ESX-Org/es_extended/tree/v1-final) or [EXM](https://github.com/extendedmode/extendedmode)
-* [r3_notifications](https://github.com/r3ps4J/r3_notifications)
-Optional:
-* [r3_pawnshop] (https://github.com/r3ps4J/r3_pawnshop) to sell items
+* [QBCore](https://github.com/qbcore-framework/qb-core)
 
 ## Download & Installation
-
-### Using Git
-```
-cd resources
-git clone https://github.com/r3ps4J/r3_pawnshop
-```
 
 ### Manually
 - Download this resource and put it in your resources folder.
@@ -42,7 +35,7 @@ git clone https://github.com/r3ps4J/r3_pawnshop
 ```
 ensure r3_pawnshop
 ```
-- Import the sql file into your database
+- Add the items to your shared.lua
 
 ## Credits
 This resource was made from [glitchdetectors example handler](https://github.com/glitchdetector/fivem-prospecting-example).
@@ -57,9 +50,9 @@ I'll paste something regarding a license down here.
 Any changes to this script should link back to me. You can always make a pull request if you have good extra stuff.
 
 ### License
-r3_prospecting - Prospecting handler for ESX.
+r3_prospecting - Prospecting handler for QBCore.
 
-Copyright (C) 2020 r3ps4J
+Copyright (C) 2023 r3ps4J
 
 This program Is free software: you can redistribute it And/Or modify it under the terms Of the GNU General Public License As published by the Free Software Foundation, either version 3 Of the License, Or (at your option) any later version.
 

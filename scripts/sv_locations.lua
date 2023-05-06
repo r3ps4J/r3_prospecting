@@ -1,8 +1,4 @@
-ESX = nil
-
-TriggerEvent('esx:getSharedObject', function(obj)
-    ESX = obj
-end) 
+QBCore = exports['qb-core']:GetCoreObject()
 
 local locations = {
     {x = 1600.185, y = 6622.714, z = 15.85106, data = {
@@ -92,27 +88,26 @@ CreateThread(function()
 
     -- The player started prospecting
     Prospecting.OnStart(function(player)
-		TriggerClientEvent("r3_notifications:client:sendNotification", player, "Started prospecting", "inform", 2500)
+		TriggerClientEvent("QBCore:Notify", player, "Started prospecting", "primary", 2500)
     end)
 
     -- The player stopped prospecting
     -- time in milliseconds
     Prospecting.OnStop(function(player, time)
-		TriggerClientEvent("r3_notifications:client:sendNotification", player, "Stopped prospecting", "inform", 2500)
+		TriggerClientEvent("QBCore:Notify", player, "Stopped prospecting", "primary", 2500)
     end)
 end)
 
 
-ESX.RegisterUsableItem("detector", function(source)
+QBCore.Functions.CreateUseableItem("detector", function(source)
 	TriggerClientEvent("r3_prospecting:useDetector", source)
 end)
 
 function FoundItem(player, data)
-	local xPlayer = ESX.GetPlayerFromId(player)
-	if xPlayer.canCarryItem(data.item, 1) then
-		xPlayer.addInventoryItem   (data.item, 1)
-		TriggerClientEvent("r3_notifications:client:sendNotification", player, "You found " .. data.label .. "!", "success", 5000)
+	local Player = QBCore.Functions.GetPlayer(player)
+	if Player.Functions.AddItem(data.item, 1) then
+		TriggerClientEvent("QBCore:Notify", player, "You found " .. data.label .. "!", "success", 5000)
 	else
-		TriggerClientEvent("r3_notifications:client:sendNotification", player, "You found " .. data.label .. " but your inventory is full!", "error", 5000)
+		TriggerClientEvent("QBCore:Notify", player, "You found " .. data.label .. " but your inventory is full!", "error", 5000)
 	end
 end
