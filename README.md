@@ -1,6 +1,8 @@
 # r3_prospecting
 #### A handler for glitchdetectors prospecting minigame made to work with ESX
 
+For QBCore version check the [qbcore branch](https://github.com/r3ps4J/r3_prospecting/tree/qbcore).
+
 ## Features
 * Randomly generated treasure within a pre-defined area
 * Infinitely re-generating treasure
@@ -21,9 +23,10 @@ You have to find a way to give players the detector item, it is the easiest to j
 ## Dependencies
 * [Prospecting](https://github.com/glitchdetector/fivem-prospecting)
 * [ESX](https://github.com/ESX-Org/es_extended/tree/v1-final) or [EXM](https://github.com/extendedmode/extendedmode)
-* [r3_notifications](https://github.com/r3ps4J/r3_notifications)
+* [r3_notifications](https://github.com/r3ps4J-FiveM/r3_notifications)
+
 Optional:
-* [r3_pawnshop] (https://github.com/r3ps4J/r3_pawnshop) to sell items
+* [r3_pawnshop](https://github.com/r3ps4J/r3_pawnshop) to sell items
 
 ## Download & Installation
 
