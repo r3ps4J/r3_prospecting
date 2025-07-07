@@ -5,9 +5,12 @@ contact "discord.gg/bEWmBbg"
 fx_version "adamant"
 game "gta5"
 
-description "Prospecting plugin for ESX"
+description "Prospecting plugin"
 
-dependencies {"prospecting"}
+dependencies {
+    "prospecting",
+    "r3_servicesmanager",
+}
 server_script "@prospecting/interface.lua"
 
 client_script "scripts/cl_*.lua"
