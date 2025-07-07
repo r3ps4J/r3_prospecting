@@ -1,3 +1,5 @@
+local notification = exports.r3_servicesmanager:load("notification")
+
 QBCore = exports['qb-core']:GetCoreObject()
 
 local locations = {
@@ -88,13 +90,19 @@ CreateThread(function()
 
     -- The player started prospecting
     Prospecting.OnStart(function(player)
-		TriggerClientEvent("QBCore:Notify", player, "Started prospecting", "primary", 2500)
+        notification.showNotification(player, "Started prospecting", {
+            style = "info",
+            duration = 2500,
+        })
     end)
 
     -- The player stopped prospecting
     -- time in milliseconds
     Prospecting.OnStop(function(player, time)
-		TriggerClientEvent("QBCore:Notify", player, "Stopped prospecting", "primary", 2500)
+        notification.showNotification(player, "Stopped prospecting", {
+            style = "info",
+            duration = 2500,
+        })
     end)
 end)
 
@@ -106,8 +114,14 @@ end)
 function FoundItem(player, data)
 	local Player = QBCore.Functions.GetPlayer(player)
 	if Player.Functions.AddItem(data.item, 1) then
-		TriggerClientEvent("QBCore:Notify", player, "You found " .. data.label .. "!", "success", 5000)
+        notification.showNotification(player, "You found " .. data.label .. "!", {
+            style = "success",
+            duration = 5000,
+        })
 	else
-		TriggerClientEvent("QBCore:Notify", player, "You found " .. data.label .. " but your inventory is full!", "error", 5000)
+        notification.showNotification(player, "You found " .. data.label .. " but your inventory is full!", {
+            style = "error",
+            duration = 5000,
+        })
 	end
 end
