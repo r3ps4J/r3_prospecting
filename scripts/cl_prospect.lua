@@ -1,15 +1,8 @@
-ESX = nil
+QBCore = exports['qb-core']:GetCoreObject()
 local blip_location = vector3(1580.9, 6592.204, 13.84828)
 local blip = nil
 local area_blip = nil
 local area_size = 100.0
-
-Citizen.CreateThread(function()
-	while ESX == nil do
-		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-		Citizen.Wait(0)
-	end
-end)
 
 CreateThread(function()
     AddTextEntry("PROSP_BLIP", Config.ProspectingBlipText)
@@ -31,14 +24,14 @@ AddEventHandler("r3_prospecting:startProspecting", function()
     if dist < area_size then
         TriggerServerEvent("r3_prospecting:activateProspecting")
     else
-		exports["r3_notifications"]:clientSendNotification("You are not in a prospecting area!", "error", 5000)
+		QBCore.Functions.Notify("You are not in a prospecting area!", "error", 5000)
 	end
 end, false)
 
 RegisterNetEvent("r3_prospecting:useDetector")
 AddEventHandler("r3_prospecting:useDetector", function()
 	if IsPedInAnyVehicle(PlayerPedId()) then
-		exports["r3_notifications"]:clientSendNotification("You can not prospect from a vehicle!", "error", 5000)
+		QBCore.Functions.Notify("You can not prospect from a vehicle!", "error", 5000)
 	else
 		TriggerEvent("r3_prospecting:startProspecting")
 	end
