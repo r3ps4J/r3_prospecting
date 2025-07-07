@@ -1,4 +1,5 @@
 local notification = exports.r3_servicesmanager:load("notification")
+local inventory = exports.r3_servicesmanager:load("inventory")
 
 QBCore = exports['qb-core']:GetCoreObject()
 
@@ -112,8 +113,7 @@ QBCore.Functions.CreateUseableItem("detector", function(source)
 end)
 
 function FoundItem(player, data)
-	local Player = QBCore.Functions.GetPlayer(player)
-	if Player.Functions.AddItem(data.item, 1) then
+	if inventory.addItem({type = "player", id = player}, data.item, 1) then
         notification.showNotification(player, "You found " .. data.label .. "!", {
             style = "success",
             duration = 5000,
