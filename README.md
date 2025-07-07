@@ -1,7 +1,7 @@
 # r3_prospecting
-#### A handler for glitchdetectors prospecting minigame made to work with QBCore
+#### A handler for glitchdetectors prospecting minigame made to work with QBCore and ESX
 
-This is a QBCore adaptation using minor parts of the [prospecting with treasure map script](https://forum.cfx.re/t/esx-qbcore-prospecting-with-treasure-map/3596757).
+This uses r3_servicesmanager to support every framework that registers itself properly as a provider.
 
 ## Features
 * Randomly generated treasure within a pre-defined area
@@ -22,7 +22,7 @@ You have to find a way to give players the detector item, it is the easiest to j
 
 ## Dependencies
 * [Prospecting](https://github.com/glitchdetector/fivem-prospecting)
-* [QBCore](https://github.com/qbcore-framework/qb-core)
+* An inventory, usableItems and notification provider registered within r3_servicesmanager.
 
 ## Download & Installation
 
@@ -33,9 +33,9 @@ You have to find a way to give players the detector item, it is the easiest to j
 - Add this to your `server.cfg`:
 
 ```
-ensure r3_pawnshop
+ensure r3_prospecting
 ```
-- Add the items to your shared.lua
+- Add the items to your core or inventory script.
 
 ## Credits
 This resource was made from [glitchdetectors example handler](https://github.com/glitchdetector/fivem-prospecting-example).
@@ -50,9 +50,9 @@ I'll paste something regarding a license down here.
 Any changes to this script should link back to me. You can always make a pull request if you have good extra stuff.
 
 ### License
-r3_prospecting - Prospecting handler for QBCore.
+r3_prospecting - Prospecting handler.
 
-Copyright (C) 2023 r3ps4J
+Copyright (C) 2025 r3ps4J
 
 This program Is free software: you can redistribute it And/Or modify it under the terms Of the GNU General Public License As published by the Free Software Foundation, either version 3 Of the License, Or (at your option) any later version.
 
