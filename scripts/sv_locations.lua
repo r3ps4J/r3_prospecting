@@ -1,7 +1,6 @@
 local notification = exports.r3_servicesmanager:load("notification")
 local inventory = exports.r3_servicesmanager:load("inventory")
-
-QBCore = exports['qb-core']:GetCoreObject()
+local usableItems = exports.r3_servicesmanager:load("usableItems")
 
 local locations = {
     {x = 1600.185, y = 6622.714, z = 15.85106, data = {
@@ -107,8 +106,7 @@ CreateThread(function()
     end)
 end)
 
-
-QBCore.Functions.CreateUseableItem("detector", function(source)
+usableItems.registerUsableItem("detector", function(source)
 	TriggerClientEvent("r3_prospecting:useDetector", source)
 end)
 
