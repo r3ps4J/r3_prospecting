@@ -111,7 +111,7 @@ usableItemsProvider.registerUsableItem("detector", function(source)
 end)
 
 function FoundItem(player, data)
-	if inventoryProvider.addItem({type = "player", id = player}, data.item, 1) then
+	if inventoryProvider.addItem(player, data.item, 1) then
         notificationProvider.showNotification(player, "You found " .. data.label .. "!", {
             style = "success",
             duration = 5000,
