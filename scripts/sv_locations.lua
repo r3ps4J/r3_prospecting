@@ -1,6 +1,6 @@
-local notification = exports.r3_servicesmanager:load("notification")
-local inventory = exports.r3_servicesmanager:load("inventory")
-local usableItems = exports.r3_servicesmanager:load("usableItems")
+local notificationProvider = exports.r3_servicesmanager:load("notification")
+local inventoryProvider = exports.r3_servicesmanager:load("inventory")
+local usableItemsProvider = exports.r3_servicesmanager:load("usableItems")
 
 local locations = {
     {x = 1600.185, y = 6622.714, z = 15.85106, data = {
@@ -90,7 +90,7 @@ CreateThread(function()
 
     -- The player started prospecting
     Prospecting.OnStart(function(player)
-        notification.showNotification(player, "Started prospecting", {
+        notificationProvider.showNotification(player, "Started prospecting", {
             style = "info",
             duration = 2500,
         })
@@ -99,25 +99,25 @@ CreateThread(function()
     -- The player stopped prospecting
     -- time in milliseconds
     Prospecting.OnStop(function(player, time)
-        notification.showNotification(player, "Stopped prospecting", {
+        notificationProvider.showNotification(player, "Stopped prospecting", {
             style = "info",
             duration = 2500,
         })
     end)
 end)
 
-usableItems.registerUsableItem("detector", function(source)
+usableItemsProvider.registerUsableItem("detector", function(source)
 	TriggerClientEvent("r3_prospecting:useDetector", source)
 end)
 
 function FoundItem(player, data)
-	if inventory.addItem({type = "player", id = player}, data.item, 1) then
-        notification.showNotification(player, "You found " .. data.label .. "!", {
+	if inventoryProvider.addItem({type = "player", id = player}, data.item, 1) then
+        notificationProvider.showNotification(player, "You found " .. data.label .. "!", {
             style = "success",
             duration = 5000,
         })
 	else
-        notification.showNotification(player, "You found " .. data.label .. " but your inventory is full!", {
+        notificationProvider.showNotification(player, "You found " .. data.label .. " but your inventory is full!", {
             style = "error",
             duration = 5000,
         })

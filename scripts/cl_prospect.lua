@@ -1,4 +1,4 @@
-local notification = exports.r3_servicesmanager:load("notification")
+local notificationProvider = exports.r3_servicesmanager:load("notification")
 
 local blip_location = vector3(1580.9, 6592.204, 13.84828)
 local blip = nil
@@ -25,7 +25,7 @@ AddEventHandler("r3_prospecting:startProspecting", function()
     if dist < area_size then
         TriggerServerEvent("r3_prospecting:activateProspecting")
     else
-        notification.showNotification("You are not in a prospecting area!", {
+        notificationProvider.showNotification("You are not in a prospecting area!", {
             style = "error",
             duration = 5000,
         })
@@ -35,7 +35,7 @@ end, false)
 RegisterNetEvent("r3_prospecting:useDetector")
 AddEventHandler("r3_prospecting:useDetector", function()
 	if IsPedInAnyVehicle(PlayerPedId()) then
-        notification.showNotification("You cannot prospect from a vehicle!", {
+        notificationProvider.showNotification("You cannot prospect from a vehicle!", {
             style = "error",
             duration = 5000,
         })
