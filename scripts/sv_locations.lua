@@ -38,28 +38,42 @@ local base_location = vector3(1580.9, 6592.204, 13.84828)
 local area_size = 100.0
 
 -- Choose a random item from the item_pool list
-function GetNewRandomItem()
+local function getNewRandomItem()
     local item = item_pool[math.random(#item_pool)]
     return {item = item.item, label = item.label}
 end
 
 -- Make a random location within the area
-function GetNewRandomLocation()
+local function getNewRandomLocation()
     local offsetX = math.random(-area_size, area_size)
     local offsetY = math.random(-area_size, area_size)
     local pos = vector3(offsetX, offsetY, 0.0)
     if #(pos) > area_size then
         -- It's not within the circle, generate a new one instead
-        return GetNewRandomLocation()
+        return getNewRandomLocation()
     end
     return base_location + pos
 end
 
 -- Generate a new target location
-function GenerateNewTarget()
-    local newPos = GetNewRandomLocation()
-    local newData = GetNewRandomItem()
+local function generateNewTarget()
+    local newPos = getNewRandomLocation()
+    local newData = getNewRandomItem()
     Prospecting.AddTarget(newPos.x, newPos.y, newPos.z, newData)
+end
+
+local function foundItem(player, data)
+	if inventoryProvider.addItem(player, data.item, 1) then
+        notificationProvider.showNotification(player, "You found " .. data.label .. "!", {
+            style = "success",
+            duration = 5000,
+        })
+	else
+        notificationProvider.showNotification(player, "You found " .. data.label .. " but your inventory is full!", {
+            style = "error",
+            duration = 5000,
+        })
+	end
 end
 
 RegisterServerEvent("r3_prospecting:activateProspecting")
@@ -78,14 +92,14 @@ CreateThread(function()
 
     -- Generate 10 random extra targets
     for n = 0, 10 do
-        GenerateNewTarget()
+        generateNewTarget()
     end
 
     -- The player collected something
     Prospecting.SetHandler(function(player, data, x, y, z)
-		FoundItem(player, data)
+		foundItem(player, data)
         -- Every time a
-        GenerateNewTarget()
+        generateNewTarget()
     end)
 
     -- The player started prospecting
@@ -109,17 +123,3 @@ end)
 usableItemsProvider.registerUsableItem("detector", function(source)
 	TriggerClientEvent("r3_prospecting:useDetector", source)
 end)
-
-function FoundItem(player, data)
-	if inventoryProvider.addItem(player, data.item, 1) then
-        notificationProvider.showNotification(player, "You found " .. data.label .. "!", {
-            style = "success",
-            duration = 5000,
-        })
-	else
-        notificationProvider.showNotification(player, "You found " .. data.label .. " but your inventory is full!", {
-            style = "error",
-            duration = 5000,
-        })
-	end
-end
