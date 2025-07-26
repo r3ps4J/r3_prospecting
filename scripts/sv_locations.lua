@@ -13,7 +13,7 @@ local function getNewRandomLocation()
     local offsetX = math.random(-Config.areaSize, Config.areaSize)
     local offsetY = math.random(-Config.areaSize, Config.areaSize)
     local pos = vector3(offsetX, offsetY, 0.0)
-    if #(pos) > Config.areaSize then
+    if #pos > Config.areaSize then
         -- It's not within the circle, generate a new one instead
         return getNewRandomLocation()
     end
@@ -28,17 +28,17 @@ local function generateNewTarget()
 end
 
 local function foundItem(player, data)
-	if inventoryProvider.addItem(player, data.item, 1) then
+    if inventoryProvider.addItem(player, data.item, 1) then
         notificationProvider.showNotification(player, "You found " .. data.label .. "!", {
             style = "success",
             duration = 5000,
         })
-	else
+    else
         notificationProvider.showNotification(player, "You found " .. data.label .. " but your inventory is full!", {
             style = "error",
             duration = 5000,
         })
-	end
+    end
 end
 
 RegisterServerEvent("r3_prospecting:activateProspecting")
@@ -58,7 +58,7 @@ CreateThread(function()
 
     -- The player collected something
     Prospecting.SetHandler(function(player, data, x, y, z)
-		foundItem(player, data)
+        foundItem(player, data)
         -- Every time a
         generateNewTarget()
     end)
@@ -82,5 +82,5 @@ CreateThread(function()
 end)
 
 usableItemsProvider.registerUsableItem(Config.detectorItem, function(source)
-	TriggerClientEvent("r3_prospecting:useDetector", source)
+    TriggerClientEvent("r3_prospecting:useDetector", source)
 end)
