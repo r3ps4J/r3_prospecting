@@ -2,7 +2,7 @@ local notificationProvider = exports.r3_servicesmanager:load("notification")
 
 CreateThread(function()
     AddTextEntry("PROSP_BLIP", Config.blip.text)
-    local blip = AddBlipForCoord(config.baseLocation)
+    local blip = AddBlipForCoord(Config.baseLocation)
     SetBlipSprite(blip, Config.blip.sprite)
     SetBlipAsShortRange(blip, true)
     BeginTextCommandSetBlipName("PROSP_BLIP")

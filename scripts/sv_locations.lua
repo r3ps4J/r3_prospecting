@@ -5,7 +5,7 @@ local usableItemsProvider = exports.r3_servicesmanager:load("usableItems")
 -- Choose a random item from the item_pool list
 local function getNewRandomItem()
     local item = Config.itemPool[math.random(#Config.itemPool)]
-    return {item = item.item, label = item.label}
+    return { item = item.item, label = item.label }
 end
 
 -- Make a random location within the area
