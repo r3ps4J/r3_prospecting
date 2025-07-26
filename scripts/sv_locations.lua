@@ -2,6 +2,14 @@ local notificationProvider = exports.r3_servicesmanager:load("notification")
 local inventoryProvider = exports.r3_servicesmanager:load("inventory")
 local usableItemsProvider = exports.r3_servicesmanager:load("usableItems")
 
+local i18next = exports.r3_i18next:createInstanceWithPlugins()
+i18next.init({
+    fallbackLng = "en",
+    backend = {
+        loadPath = "/locales/{{lng}}.json",
+    },
+})
+
 -- Choose a random item from the item_pool list
 local function getNewRandomItem()
     local item = Config.itemPool[math.random(#Config.itemPool)]
@@ -29,12 +37,12 @@ end
 
 local function foundItem(player, data)
     if inventoryProvider.addItem(player, data.item, 1) then
-        notificationProvider.showNotification(player, "You found " .. data.label .. "!", {
+        notificationProvider.showNotification(player, i18next.t("found_item", { label = data.label }), {
             style = "success",
             duration = 5000,
         })
     else
-        notificationProvider.showNotification(player, "You found " .. data.label .. " but your inventory is full!", {
+        notificationProvider.showNotification(player, i18next.t("found_item_full", { label = data.label }), {
             style = "error",
             duration = 5000,
         })
@@ -65,7 +73,7 @@ CreateThread(function()
 
     -- The player started prospecting
     Prospecting.OnStart(function(player)
-        notificationProvider.showNotification(player, "Started prospecting", {
+        notificationProvider.showNotification(player, i18next.t("started_prospecting"), {
             style = "info",
             duration = 2500,
         })
@@ -74,7 +82,7 @@ CreateThread(function()
     -- The player stopped prospecting
     -- time in milliseconds
     Prospecting.OnStop(function(player, time)
-        notificationProvider.showNotification(player, "Stopped prospecting", {
+        notificationProvider.showNotification(player, i18next.t("stopped_prospecting"), {
             style = "info",
             duration = 2500,
         })

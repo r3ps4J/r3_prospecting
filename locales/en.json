@@ -1,0 +1,8 @@
+{
+    "not_in_area": "You are not in a prospecting area!",
+    "in_vehicle": "You cannot prospect from a vehicle!",
+    "found_item": "You found {{label}}!",
+    "found_item_full": "You found {{label}} but your inventory is full!",
+    "started_prospecting": "Started prospecting",
+    "stopped_prospecting": "Stopped prospecting"
+}

@@ -23,6 +23,7 @@ You have to find a way to give players the detector item, it is the easiest to j
 ## Dependencies
 * [Prospecting](https://github.com/glitchdetector/fivem-prospecting)
 * [r3_servicesmanager](https://github.com/r3ps4J/r3_servicesmanager) with the following providers registered: inventory, usableItems and notification.
+* [r3_i18next](https://github.com/r3ps4J/r3_i18next)
 
 ## Download & Installation
 

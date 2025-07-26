@@ -9,6 +9,7 @@ contact "discord.gg/bEWmBbg"
 dependencies {
     "prospecting",
     "r3_servicesmanager",
+    "r3_i18next",
 }
 
 shared_script "config.lua"
@@ -19,3 +20,5 @@ server_scripts {
     "@prospecting/interface.lua",
     "scripts/sv_*.lua",
 }
+
+files "locales/**/*.json"

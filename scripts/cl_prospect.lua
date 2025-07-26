@@ -1,5 +1,13 @@
 local notificationProvider = exports.r3_servicesmanager:load("notification")
 
+local i18next = exports.r3_i18next:createInstanceWithPlugins()
+i18next.init({
+    fallbackLng = "en",
+    backend = {
+        loadPath = "/locales/{{lng}}.json",
+    },
+})
+
 CreateThread(function()
     AddTextEntry("PROSP_BLIP", Config.blip.text)
     local blip = AddBlipForCoord(Config.baseLocation)
@@ -20,7 +28,7 @@ AddEventHandler("r3_prospecting:startProspecting", function()
     if dist < Config.areaSize then
         TriggerServerEvent("r3_prospecting:activateProspecting")
     else
-        notificationProvider.showNotification("You are not in a prospecting area!", {
+        notificationProvider.showNotification(i18next.t("not_in_area"), {
             style = "error",
             duration = 5000,
         })
@@ -30,7 +38,7 @@ end, false)
 RegisterNetEvent("r3_prospecting:useDetector")
 AddEventHandler("r3_prospecting:useDetector", function()
     if IsPedInAnyVehicle(PlayerPedId()) then
-        notificationProvider.showNotification("You cannot prospect from a vehicle!", {
+        notificationProvider.showNotification(i18next.t("in_vehicle"), {
             style = "error",
             duration = 5000,
         })
